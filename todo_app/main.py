@@ -33,6 +33,7 @@ class TodoItem(BaseModel):
 class TodoItemList(BaseModel):
     items: List[TodoItem]
 
+
 def get_db():
     db = SessionLocal()
     try:
@@ -41,7 +42,7 @@ def get_db():
         db.close()
 
 
-# Добавлена функция поиска по названию
+# Добавлена функция поиска по title
 @app.get("/items", response_model=List[TodoItem])
 def get_items(db: Session = Depends(get_db), title: str | None = None):
     items = db.query(TodoItemModel).all() if title is None else db.query(TodoItemModel).filter(
