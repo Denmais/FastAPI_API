@@ -1,4 +1,4 @@
-from typing import List, Optional, Any
+from typing import List, Optional, Any, Union
 from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
@@ -44,7 +44,7 @@ def get_db():
 
 # Добавлена функция поиска по title
 @app.get("/items", response_model=List[TodoItem])
-def get_items(db: Session = Depends(get_db), title: str | None = None):
+def get_items(db: Session = Depends(get_db), title: Union[str, None] = None):
     items = db.query(TodoItemModel).all() if title is None else db.query(TodoItemModel).filter(
         TodoItemModel.title == title)
     return items
