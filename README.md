@@ -43,6 +43,11 @@ pip install -r requirements.txt
 docker build -t username/backend .
 ```
 
+Запустить контейнер
+```bash
+docker run -d -p 8000:80 -v todo_data:/app/data username/backend:latest
+```
+
 ## 2. Команды для запуска 2<a id=2></a>
 
 Выполнить команды в терминале:
@@ -54,3 +59,4 @@ docker run -d -p 8000:80 -v todo_data:/app/data denmais/todo-service:latest
 ```bash
 docker run -d -p 8000:80 -v shorturl_data:/app/data denmais/shorturl-service
 ```
+
